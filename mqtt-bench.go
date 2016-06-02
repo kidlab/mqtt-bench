@@ -372,7 +372,7 @@ func Disconnect(client *MQTT.Client) {
 	// Ignore error on disconnecting.
 	defer func() {
 		r := recover()
-		if r != nil {
+		if r != nil && Debug {
 			fmt.Printf("Error on disconnecting: %v\n", r)
 		}
 	}()
