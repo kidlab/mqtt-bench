@@ -369,6 +369,14 @@ func AsyncDisconnect(clients []*MQTT.Client) {
 
 // Brokerとの接続を切断する。
 func Disconnect(client *MQTT.Client) {
+	// Ignore error on disconnecting.
+	defer func() {
+		r := recover()
+		if r != nil {
+			fmt.Printf("Error on disconnecting: %v\n", r)
+		}
+	}()
+	
 	client.Disconnect(10)
 }
 
